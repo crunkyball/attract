@@ -1965,7 +1965,10 @@ bool FeOverlay::common_exit()
 		if ( retval == 0 )
 			m_feSettings.exit_command();
 
-		return true;
+		if ( !m_feSettings.get_info_bool( FeSettings::ExitCommandOnly ) )
+		{
+			return true;
+		}
 	}
 
 	return false;
