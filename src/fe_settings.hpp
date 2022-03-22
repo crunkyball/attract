@@ -147,6 +147,7 @@ public:
 		MenuPrompt, // 'Displays Menu' prompt
 		MenuLayout, // 'Displays Menu' layout
 		ImageCacheMBytes,
+		ExitCommandOnly,
 		LAST_INDEX
 	};
 
@@ -217,6 +218,7 @@ private:
 	StartupModeType m_startup_mode;
 	bool m_confirm_favs;
 	bool m_confirm_exit;
+	bool m_exit_command_only;
 	bool m_track_usage;
 	bool m_multimon;
 	WindowType m_window_mode;

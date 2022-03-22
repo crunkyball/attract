@@ -2002,6 +2002,12 @@ void FeMiscMenu::get_options( FeConfigContext &ctx )
 			ctx.fe_settings.get_info( FeSettings::ExitCommand ),
 			"_help_exit_command" );
 
+	ctx.add_optl( Opt::LIST,
+			"Exit Command Only (App doesn't quit)",
+			ctx.fe_settings.get_info_bool( FeSettings::ExitCommandOnly ) ? bool_opts[0] : bool_opts[1],
+			"_help_exit_command_only" );
+	ctx.back_opt().append_vlist( bool_opts );
+
 	ctx.add_optl( Opt::EDIT,
 			"Exit Message",
 			ctx.fe_settings.get_info( FeSettings::ExitMessage ),
@@ -2090,6 +2096,9 @@ bool FeMiscMenu::save( FeConfigContext &ctx )
 
 	ctx.fe_settings.set_info( FeSettings::ExitCommand,
 			ctx.opt_list[i++].get_value() );
+
+	ctx.fe_settings.set_info( FeSettings::ExitCommandOnly,
+			ctx.opt_list[i++].get_vindex() == 0 ? FE_CFG_YES_STR : FE_CFG_NO_STR );
 
 	ctx.fe_settings.set_info( FeSettings::ExitMessage,
 			ctx.opt_list[i++].get_value() );

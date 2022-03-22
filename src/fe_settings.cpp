@@ -273,6 +273,7 @@ FeSettings::FeSettings( const std::string &config_path,
 	m_startup_mode( ShowLastSelection ),
 	m_confirm_favs( true ),
 	m_confirm_exit( true ),
+	m_exit_command_only( false ),
 	m_track_usage( true ),
 	m_multimon( false ),
 #if defined(SFML_SYSTEM_LINUX) || defined(FORCE_FULLSCREEN)
@@ -438,6 +439,7 @@ const char *FeSettings::configSettingStrings[] =
 	"menu_prompt",
 	"menu_layout",
 	"image_cache_mbytes",
+	"exit_command_only",
 	NULL
 };
 
@@ -2856,6 +2858,7 @@ const std::string FeSettings::get_info( int index ) const
 	case GroupClones:
 	case ConfirmFavourites:
 	case ConfirmExit:
+	case ExitCommandOnly:
 	case TrackUsage:
 	case MultiMon:
 	case SmoothImages:
@@ -2905,6 +2908,8 @@ bool FeSettings::get_info_bool( int index ) const
 		return m_confirm_favs;
 	case ConfirmExit:
 		return m_confirm_exit;
+	case ExitCommandOnly:
+		return m_exit_command_only;
 	case TrackUsage:
 		return m_track_usage;
 	case MultiMon:
@@ -3017,6 +3022,10 @@ bool FeSettings::set_info( int index, const std::string &value )
 
 	case ConfirmExit:
 		m_confirm_exit = config_str_to_bool( value );
+		break;
+
+	case ExitCommandOnly:
+		m_exit_command_only = config_str_to_bool( value );
 		break;
 
 	case MouseThreshold:
