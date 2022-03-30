@@ -272,11 +272,11 @@ ifeq ($(FE_WINDOWS_COMPILE),1)
  ifeq ($(WINDOWS_CONSOLE),1)
   CFLAGS += -mconsole
   FE_FLAGS += -DWINDOWS_CONSOLE
+  EXE_EXT = -console.exe
  else
   CFLAGS += -Wl,--subsystem,windows
+  EXE_EXT = .exe
  endif
-
- EXE_EXT = .exe
 else
  CFLAGS += -DDATA_PATH=\"$(DATA_PATH)\"
 endif
